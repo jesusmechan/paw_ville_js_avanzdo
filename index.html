@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PawVille — Tu tienda de mascotas</title>
+  <title>DancyPet — Tu tienda de mascotas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet">
@@ -45,6 +45,36 @@
 
   <!-- Notificación toast -->
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <div class="modal" id="authModal" hidden>
+    <div class="modal__backdrop" onclick="cerrarModalAuth()"></div>
+    <div class="modal__content modal__content--auth" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <button class="payment-close" type="button" onclick="cerrarModalAuth()" aria-label="Cerrar cuenta">×</button>
+      <div class="auth-header"><span class="section-tag">Mi cuenta</span><h3 id="authTitle">Bienvenido de nuevo</h3><p id="authSubtitle">Ingresa para guardar tus datos y disfrutar tu compra.</p></div>
+      <div class="auth-tabs" role="tablist"><button class="auth-tab active" id="loginTab" type="button" onclick="cambiarVistaAuth('login')">Iniciar sesión</button><button class="auth-tab" id="registerTab" type="button" onclick="cambiarVistaAuth('register')">Crear cuenta</button></div>
+      <form class="auth-form" id="loginForm" onsubmit="iniciarSesion(event)">
+        <div class="form-group"><label for="loginEmail">Correo electrónico</label><input type="email" id="loginEmail" autocomplete="email" required></div>
+        <div class="form-group"><label for="loginPassword">Contraseña</label><div class="password-field"><input type="password" id="loginPassword" autocomplete="current-password" required><button class="password-toggle" type="button" onclick="alternarContrasena('loginPassword', this)">Mostrar</button></div></div>
+        <div class="auth-options"><label class="checkbox-label"><input type="checkbox" id="rememberSession"> Recordarme</label><button class="auth-link" type="button" onclick="recuperarCuenta()">¿Olvidaste tu contraseña?</button></div>
+        <p class="auth-error" id="loginError" hidden></p><button class="btn btn--primary btn--full btn--lg" type="submit">Iniciar sesión</button>
+      </form>
+      <form class="auth-form" id="registerForm" onsubmit="registrarCuenta(event)" hidden>
+        <div class="form-group"><label for="registerName">Nombre completo</label><input type="text" id="registerName" minlength="3" required></div>
+        <div class="form-group"><label for="registerEmail">Correo electrónico</label><input type="email" id="registerEmail" required></div>
+        <div class="form-group"><label for="registerPassword">Contraseña</label><div class="password-field"><input type="password" id="registerPassword" minlength="6" required><button class="password-toggle" type="button" onclick="alternarContrasena('registerPassword', this)">Mostrar</button></div></div>
+        <div class="form-group"><label for="registerPasswordConfirm">Repetir contraseña</label><input type="password" id="registerPasswordConfirm" minlength="6" required></div>
+        <label class="checkbox-label auth-terms"><input type="checkbox" id="acceptTerms" required> Acepto los términos y condiciones.</label><p class="auth-error" id="registerError" hidden></p><button class="btn btn--primary btn--full btn--lg" type="submit">Crear cuenta</button>
+      </form>
+      <div class="auth-session-actions" id="authSessionActions" hidden><div class="auth-session-avatar" id="authSessionAvatar">P</div><p>Tu sesión está activa en este navegador.</p><button class="btn btn--primary btn--full" type="button" onclick="abrirMisMascotas()">🐾 Mis mascotas</button><button class="btn btn--ghost btn--full" type="button" onclick="cerrarSesion()">Cerrar sesión</button></div>
+      <div class="pets-view" id="petsView" hidden>
+        <div class="pets-view__header"><button class="auth-link" type="button" onclick="volverAMiCuenta()">← Volver a mi cuenta</button><span class="section-tag">Mi cuenta</span><h3>Mis mascotas</h3><p>Registra sus datos y calcula una alimentación mensual personalizada.</p><p class="pets-description">La suscripción incluye comida, entregas semanales y premios por un monto mensual.</p></div>
+        <div class="pets-list" id="petsList"></div>
+        <section class="subscription-cta"><span class="section-tag">Alimentación sin preocupaciones</span><h4>Empieza con la suscripción</h4><p>Elige una mascota y recibe su comida cada mes. El pago recurrente se simula localmente con tu tarjeta.</p><div class="subscription-cta__controls"><div class="subscription-field"><label for="subscriptionPetSelect">Mascota para suscribir</label><select id="subscriptionPetSelect" onchange="cargarDatosEntrega()"></select></div><div class="subscription-field"><label for="subscriptionAddress">Dirección de entrega semanal</label><input type="text" id="subscriptionAddress" minlength="10" required></div><div class="subscription-field"><label for="subscriptionTime">Rango de horario</label><select id="subscriptionTime" required><option value="">Selecciona un horario</option><option>08:00 - 11:00</option><option>11:00 - 14:00</option><option>14:00 - 17:00</option><option>17:00 - 20:00</option></select></div><button class="btn btn--primary btn--lg" type="button" onclick="iniciarSuscripcion()">Empezar con la suscripción</button></div><p class="auth-error" id="subscriptionError" hidden></p></section>
+        <form class="pet-form" id="petForm" onsubmit="registrarMascota(event)"><h4 id="petFormTitle">Registrar mascota</h4><div class="pet-form__grid"><div class="form-group"><label for="petName">Nombre</label><input type="text" id="petName" required></div><div class="form-group"><label for="petType">Tipo</label><select id="petType"><option value="perro">Perro</option><option value="gato">Gato</option></select></div><div class="form-group"><label for="petAge">Edad (años)</label><input type="number" id="petAge" min="0" step="0.1" required></div><div class="form-group"><label for="petWeight">Peso (kg)</label><input type="number" id="petWeight" min="0.1" step="0.1" required></div><div class="form-group"><label for="petFood">Tipo de comida</label><select id="petFood"><option value="basico">Básica</option><option value="medio">Media</option><option value="premium">Premium</option></select></div><div class="form-group"><label for="petIcon">Icono</label><select id="petIcon"><option>🐶</option><option>🐱</option><option>🐾</option><option>🦴</option></select></div></div><div class="form-group"><label for="petPhoto">Foto (opcional)</label><input type="file" id="petPhoto" accept="image/png,image/jpeg,image/webp"></div><p class="auth-error" id="petError" hidden></p><div class="pet-form__actions"><button class="btn btn--primary btn--full" id="petSubmitButton" type="submit">Registrar mascota</button><button class="btn btn--ghost btn--full" id="cancelPetEdit" type="button" onclick="cancelarEdicionMascota()" hidden>Cancelar edición</button></div></form>
+      </div>
+      <p class="auth-note">Tus datos se guardan solo en este navegador para esta demostración.</p>
+    </div>
+  </div>
 
   <!-- Modal de pago -->
   <div class="modal" id="paymentModal" hidden>
@@ -199,6 +229,7 @@
         <li><a href="#nosotros" onclick="cerrarMenuMovil()">Nosotros</a></li>
       </ul>
       <div class="nav__actions">
+        <button class="btn-account" id="accountButton" type="button" onclick="abrirModalAuth()" aria-label="Iniciar sesión"><span>◯</span><span id="accountButtonText">Iniciar sesión</span></button>
         <button class="btn-cart" id="openCart" onclick="abrirCarrito()" aria-label="Abrir carrito">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
           <span class="btn-cart__badge" id="cartBadge">0</span>
@@ -423,14 +454,14 @@
       <div class="footer__col">
         <h4>Contacto</h4>
         <ul>
-          <li>📍 Av. Pet Lovers 123, Lima</li>
-          <li>📞 +51 999 888 777</li>
+          <li>📍 Av. Ayacucho Mz. 9 lote 1A, Tablada Nueva</li>
+          <li>📞 +51 930 401 998</li>
           <li>✉️ hola@pawville.pe</li>
         </ul>
       </div>
     </div>
     <div class="footer__bottom container">
-      <p>&copy; 2026 PawVille. Todos los derechos reservados.</p>
+      <p>&copy; 2026 DancyPet. Todos los derechos reservados.</p>
       <div class="footer__social">
         <a href="#" aria-label="Facebook">FB</a>
         <a href="#" aria-label="Instagram">IG</a>
