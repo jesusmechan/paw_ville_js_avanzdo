@@ -3,24 +3,24 @@
    ============================================= */
 
 :root {
-  --color-primary: #e85d4c;
-  --color-primary-dark: #d14a3a;
-  --color-primary-light: #fff0ee;
-  --color-secondary: #2d6a6a;
-  --color-secondary-light: #3d8b8b;
-  --color-accent: #f4a261;
-  --color-bg: #faf8f5;
-  --color-bg-alt: #f0ebe3;
-  --color-surface: #ffffff;
-  --color-text: #1a1a2e;
-  --color-text-muted: #6b6b80;
-  --color-border: #e8e4de;
-  --color-success: #2ecc71;
+  --color-primary: #956984;
+  --color-primary-dark: #79526b;
+  --color-primary-light: #f1e5ec;
+  --color-secondary: #8b837d;
+  --color-secondary-light: #aaa19a;
+  --color-accent: #d7a36d;
+  --color-bg: #fbf7ed;
+  --color-bg-alt: #eee4d8;
+  --color-surface: #fffdf7;
+  --color-text: #403733;
+  --color-text-muted: #766b66;
+  --color-border: #e3d7ca;
+  --color-success: #849b78;
   --font-body: 'DM Sans', system-ui, sans-serif;
   --font-display: 'Fraunces', Georgia, serif;
-  --shadow-sm: 0 2px 8px rgba(26, 26, 46, 0.06);
-  --shadow-md: 0 8px 30px rgba(26, 26, 46, 0.1);
-  --shadow-lg: 0 20px 60px rgba(26, 26, 46, 0.15);
+  --shadow-sm: 0 2px 8px rgba(64, 55, 51, 0.06);
+  --shadow-md: 0 8px 30px rgba(64, 55, 51, 0.1);
+  --shadow-lg: 0 20px 60px rgba(64, 55, 51, 0.15);
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
@@ -127,14 +127,14 @@ button, input, select {
 }
 
 .btn--primary {
-  background: linear-gradient(135deg, var(--color-primary), #f07060);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   color: #fff;
-  box-shadow: 0 4px 15px rgba(232, 93, 76, 0.35);
+  box-shadow: 0 4px 15px rgba(149, 105, 132, 0.35);
 }
 
 .btn--primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(232, 93, 76, 0.45);
+  box-shadow: 0 8px 25px rgba(149, 105, 132, 0.45);
 }
 
 .btn--outline {
@@ -189,7 +189,7 @@ button, input, select {
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(250, 248, 245, 0.85);
+  background: rgba(251, 247, 237, 0.88);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
   transition: var(--transition);
@@ -217,7 +217,11 @@ button, input, select {
 }
 
 .logo__icon {
-  font-size: 1.6rem;
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .logo em {
@@ -354,7 +358,7 @@ button, input, select {
 .hero__blob--1 {
   width: 500px;
   height: 500px;
-  background: #ffd5cf;
+  background: #e6c3d3;
   top: -100px;
   right: -100px;
 }
@@ -362,7 +366,7 @@ button, input, select {
 .hero__blob--2 {
   width: 400px;
   height: 400px;
-  background: #c8e6e6;
+  background: #d8d0ca;
   bottom: -50px;
   left: -100px;
 }
@@ -370,7 +374,7 @@ button, input, select {
 .hero__blob--3 {
   width: 300px;
   height: 300px;
-  background: #ffe4c4;
+  background: #f0d5ad;
   top: 50%;
   left: 40%;
 }
@@ -568,7 +572,7 @@ button, input, select {
 
 .search-box:focus-within {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(232, 93, 76, 0.15);
+  box-shadow: 0 0 0 3px rgba(149, 105, 132, 0.15);
 }
 
 .search-box svg {
@@ -872,7 +876,7 @@ button, input, select {
 }
 
 .newsletter__inner {
-  background: linear-gradient(135deg, #1a1a2e, #2d2d4a);
+  background: linear-gradient(135deg, #403733, #62544d);
   border-radius: var(--radius-lg);
   padding: 3rem;
   display: flex;
@@ -998,7 +1002,7 @@ button, input, select {
 .cart-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(26, 26, 46, 0.5);
+  background: rgba(64, 55, 51, 0.5);
   z-index: 200;
   opacity: 0;
   visibility: hidden;
@@ -1216,7 +1220,7 @@ button, input, select {
 .modal__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(26, 26, 46, 0.6);
+  background: rgba(64, 55, 51, 0.6);
   backdrop-filter: blur(4px);
 }
 
@@ -1351,7 +1355,7 @@ button, input, select {
 }
 
 .card-preview {
-  background: linear-gradient(135deg, #2d6a6a, #1a1a2e);
+  background: linear-gradient(135deg, #8b837d, #403733);
   border-radius: var(--radius-md);
   padding: 1.5rem;
   color: #fff;
@@ -1365,7 +1369,7 @@ button, input, select {
 .card-preview__chip {
   width: 40px;
   height: 30px;
-  background: linear-gradient(135deg, #f4a261, #e9c46a);
+  background: linear-gradient(135deg, #d7a36d, #e5c58d);
   border-radius: 6px;
 }
 
@@ -1421,7 +1425,7 @@ button, input, select {
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(232, 93, 76, 0.15);
+  box-shadow: 0 0 0 3px rgba(149, 105, 132, 0.15);
   background: var(--color-surface);
 }
 
