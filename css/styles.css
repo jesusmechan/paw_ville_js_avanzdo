@@ -1486,6 +1486,43 @@ button, input, select {
   }
 }
 
+.btn-account { display: inline-flex; align-items: center; gap: .45rem; min-height: 44px; padding: .55rem .9rem; border: 1px solid var(--color-border); border-radius: var(--radius-full); background: var(--color-surface); color: var(--color-text); font-weight: 600; cursor: pointer; }
+.btn-account:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.modal__content--auth { max-width: 500px; max-height: 92vh; overflow-y: auto; text-align: left; padding: 2rem; }
+.auth-header { margin-bottom: 1.25rem; padding-right: 2rem; }
+.auth-header h3 { margin: .5rem 0 .35rem; }
+.auth-header p { margin-bottom: 0; font-size: .9rem; }
+.auth-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; margin-bottom: 1.25rem; padding: .25rem; background: var(--color-bg); border-radius: var(--radius-sm); }
+.auth-tab { padding: .7rem; border-radius: 6px; background: transparent; color: var(--color-text-muted); font-weight: 600; cursor: pointer; }
+.auth-tab.active { background: var(--color-surface); color: var(--color-primary); box-shadow: var(--shadow-sm); }
+.auth-form .form-group { margin-bottom: 1rem; }
+.auth-form label, .pet-form label { display: block; margin-bottom: .35rem; font-size: .82rem; font-weight: 600; }
+.auth-form input, .pet-form input, .pet-form select { width: 100%; min-height: 42px; padding: .7rem .8rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface); color: var(--color-text); }
+.password-field { position: relative; }
+.password-field input { padding-right: 4.5rem; }
+.password-toggle { position: absolute; top: 50%; right: .7rem; transform: translateY(-50%); background: none; color: var(--color-primary); font-weight: 700; cursor: pointer; }
+.auth-options, .checkbox-label { display: flex; align-items: center; gap: .45rem; font-size: .8rem; }
+.auth-options { justify-content: space-between; margin-bottom: 1rem; }
+.auth-link { padding: 0; background: none; color: var(--color-primary); cursor: pointer; }
+.auth-error { padding: .6rem .7rem; border-radius: var(--radius-sm); background: var(--color-primary-light); color: var(--color-primary) !important; font-size: .8rem; }
+.auth-session-actions { text-align: center; }
+.auth-session-avatar { display: grid; place-items: center; width: 56px; height: 56px; margin: 0 auto; border-radius: 50%; background: var(--color-primary-light); color: var(--color-primary); font-size: 1.6rem; font-weight: 700; }
+.pets-view__header { margin-bottom: 1rem; }
+.pets-view__header h3 { margin: .4rem 0; }
+.pets-view__header p { margin-bottom: .5rem; font-size: .86rem; }
+.pets-list { display: grid; gap: .7rem; margin-bottom: 1rem; }
+.pets-empty { padding: 1rem; border: 1px dashed var(--color-border); border-radius: var(--radius-sm); color: var(--color-text-muted); text-align: center; font-size: .85rem; }
+.pet-card { display: grid; grid-template-columns: 45px 1fr auto; gap: .7rem; align-items: center; padding: .75rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-bg); }
+.pet-card__avatar { display: grid; place-items: center; width: 45px; height: 45px; overflow: hidden; border-radius: 50%; background: var(--color-primary-light); font-size: 1.5rem; }
+.pet-card__avatar img { width: 100%; height: 100%; object-fit: cover; }
+.pet-card__name { font-weight: 700; }.pet-card__meta { color: var(--color-text-muted); font-size: .74rem; }.pet-card__subscription { color: var(--color-secondary); font-size: .78rem; font-weight: 700; }
+.pet-card__actions { display: flex; flex-direction: column; gap: .3rem; }.pet-card__actions button { padding: .35rem .5rem; border-radius: 5px; background: var(--color-surface); color: var(--color-primary); font-size: .7rem; cursor: pointer; }
+.pet-form { padding-top: 1rem; border-top: 1px solid var(--color-border); }.pet-form h4 { margin-bottom: .8rem; font-family: var(--font-display); }.pet-form__grid { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }.pet-form__actions { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+.subscription-cta { margin: 1rem 0; padding: 1.1rem; border-radius: var(--radius-md); background: var(--color-secondary); color: #fff; }.subscription-cta h4 { margin-bottom: .35rem; font-family: var(--font-display); font-size: 1.3rem; }.subscription-cta > p { color: rgba(255,255,255,.86); font-size: .82rem; }.subscription-cta .section-tag { background: rgba(255,255,255,.15); color: #fff; }.subscription-cta__controls { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; align-items: end; }.subscription-field { display: grid; gap: .3rem; }.subscription-field input, .subscription-field select { width: 100%; min-height: 44px; padding: .65rem; border: 0; border-radius: var(--radius-sm); background: #fff; color: var(--color-text); }.subscription-cta .btn { min-height: 44px; }
+.payment-methods[hidden], .payment-form[hidden] { display: none; }
+
+@media (max-width: 480px) { .btn-account span:last-child { display: none; }.btn-account { width: 44px; justify-content: center; padding: 0; }.pet-form__grid, .pet-form__actions, .subscription-cta__controls { grid-template-columns: 1fr; }.pet-card { grid-template-columns: 42px 1fr; }.pet-card__actions { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; } }
+
 /* ---- Responsive ---- */
 @media (max-width: 1024px) {
   .categories__grid {
